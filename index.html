@@ -1,54 +1,301 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dieu bi mat gi dang cho don ban?</title>
-    <link type="text/css" rel="stylesheet" href="./asset/style.css">
-    <script type="text/javascript" src="./asset/jquery.min.js"></script>
-    <script type="text/javascript" src="./asset/jscex.min.js"></script>
-    <script type="text/javascript" src="./asset/jscex-parser.js"></script>
-    <script type="text/javascript" src="./asset/jscex-jit.js"></script>
-    <script type="text/javascript" src="./asset/jscex-builderbase.min.js"></script>
-    <script type="text/javascript" src="./asset/jscex-async.min.js"></script>
-    <script type="text/javascript" src="./asset/jscex-async-powerpack.min.js"></script>
-    <script type="text/javascript" src="./asset/functions.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./asset/love.js" charset="utf-8"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Điều bí mật gì đang chờ đón bạn? 🌸</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/img/tn.ico">
+    <link rel="shortcut icon" href="./assets/img/tn.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="./assets/css/style.css">
+    
+    <!-- Vendor JavaScript Libraries -->
+    <script type="text/javascript" src="./assets/js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="./assets/js/libs/jscex.min.js"></script>
+    <script type="text/javascript" src="./assets/js/libs/jscex-parser.js"></script>
+    <script type="text/javascript" src="./assets/js/libs/jscex-jit.js"></script>
+    <script type="text/javascript" src="./assets/js/libs/jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="./assets/js/libs/jscex-async.min.js"></script>
+    <script type="text/javascript" src="./assets/js/libs/jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="./assets/js/functions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./assets/js/libs/love.js" charset="utf-8"></script>
 </head>
 
 <body>
+    <!-- Nút điều khiển âm nhạc góc phải -->
+    <div id="music-control">
+        <button id="music-btn" class="music-toggle-btn" aria-label="Bật/Tắt nhạc" title="Bật/Tắt âm nhạc">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Màn hình chính (Landscape & Desktop) -->
     <div id="main">
         <div id="wrap">
-            <div id="text" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;">
+            <!-- Thư chúc mừng 20/10 -->
+            <div id="text" class="letter-card">
                 <div id="code">
-                    <font color="#000"><span class="say">Xin chào! Là chúng mình - các "quàng tử" của CLBTNQHQN đây.</span><br>
-                        <span class="say"> </span><br>
-                        <span class="say">Nhân dịp ngày Phụ nữ Việt Nam 20/10, chúng mình cũng có một lời muốn nói với mọi người đó đó! </span><br>
-                        <span class="say">Mong rằng các "bông hồng" của CLB sẽ ngày càng xinh đẹp, tự tin, có nhiều sức khỏe, học giỏi và sẽ luôn hạnh phúc với những gì mình đang có.</span><br>
-                        <span class="say">Ngoài ra cũng không thể quên gửi một lời cảm ơn thật to lớn đến các bạn nữ vì đã luôn đồng hành và cùng chúng mình tạo ra những kỉ niệm thật đẹp nha!</span><br>
-                        <span class="say"><span class="space"><img width="100px" height="100px" src="image/tym.png" alt=""><br>
-                        <a href="https://drive.google.com/drive/folders/1fILtFYl7tkBWg5vCPuzsZf9s9cpOf1NL?usp=drive_link">
-							Bấm vào hoặc quét mã bạn nhé!!
-						</a>
-                    </font>
-                    </p>
+                    <div class="letter-header">
+                        <span class="letter-badge">🌸 Chúc mừng ngày Phụ nữ Việt Nam 20/10</span>
+                    </div>
+                    <p class="say">Xin chào! Là chúng mình – các <strong>"quàng tử"</strong> của <strong>CLBTNQHQN</strong> đây.</p>
+                    <p class="say">Nhân dịp ngày Phụ nữ Việt Nam 20/10, chúng mình có đôi lời muốn gửi gắm đến mọi người đó nha!</p>
+                    <p class="say">Mong rằng các <em>"bông hồng"</em> của CLB sẽ ngày càng xinh đẹp, tự tin, rạng rỡ, ngập tràn sức khỏe, học giỏi và luôn luôn hạnh phúc với những gì mình đang có.</p>
+                    <p class="say">Ngoài ra cũng không thể quên gửi một lời cảm ơn thật to lớn đến các bạn nữ vì đã luôn đồng hành và cùng chúng mình tạo nên những kỷ niệm thật đẹp!</p>
                 </div>
             </div>
+
+            <!-- Canvas vẽ cây trái tim hoa nở -->
             <canvas id="canvas" width="1100" height="680"></canvas>
+
+            <!-- 3 Hộp quà xuất hiện bên dưới gốc cây (Mở lần lượt từng hộp) -->
+            <div id="gift-boxes-stage" class="gift-boxes-container">
+                <div class="gift-hint-banner">
+                    <span class="sparkle-icon">✨</span>
+                    <span id="gift-hint-text">Có món quà đầu tiên cho mấy bèo nè! Bấm mở liền tay 👇</span>
+                </div>
+                
+                <div class="gift-stage-relative">
+                    <!-- Nhân vật que vui nhộn chạy tới mở hộp quà -->
+                    <div id="runner-stage" class="runner-character" aria-hidden="true">
+                        <div class="runner-bubble">
+                            <span id="runner-text">Chờ xíu, tớ tới mở quà nè! 🏃‍♂️💨</span>
+                        </div>
+                        <div class="runner-figure">
+                            <svg class="runner-svg" viewBox="0 0 80 100" width="70" height="88">
+                                <polygon points="34,16 46,2 48,18" fill="#ff4d6d" stroke="#ffd166" stroke-width="2"/>
+                                <circle cx="46" cy="2" r="3" fill="#ffd166"/>
+                                <circle class="runner-head" cx="40" cy="26" r="15" fill="#fffefb" stroke="#2b2323" stroke-width="3.2"/>
+                                <circle class="runner-eye-l" cx="35" cy="24" r="2.2" fill="#2b2323"/>
+                                <circle class="runner-eye-r" cx="44" cy="24" r="2.2" fill="#2b2323"/>
+                                <circle cx="32" cy="29" r="2.8" fill="#ff758f" opacity="0.6"/>
+                                <circle cx="47" cy="29" r="2.8" fill="#ff758f" opacity="0.6"/>
+                                <path class="runner-mouth" d="M36 29 Q40 34 44 29" stroke="#2b2323" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+                                <line class="runner-torso" x1="40" y1="41" x2="40" y2="66" stroke="#2b2323" stroke-width="3.6" stroke-linecap="round"/>
+                                <g class="runner-arms">
+                                    <path class="runner-arm-l" d="M40 46 L26 56 L18 50" stroke="#2b2323" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+                                    <path class="runner-arm-r" d="M40 46 L54 54 L64 62" stroke="#2b2323" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+                                </g>
+                                <g class="runner-legs">
+                                    <path class="runner-leg-l" d="M40 66 L28 78 L18 88" stroke="#2b2323" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+                                    <path class="runner-leg-r" d="M40 66 L52 76 L62 90" stroke="#2b2323" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+                                </g>
+                            </svg>
+                            <div class="runner-smoke">💨</div>
+                        </div>
+                    </div>
+
+                    <div class="gift-list" id="stage-gift-list">
+                        <!-- Hộp quà 1: Ban đầu hiển thị mở trước -->
+                        <button class="gift-box gift-box-1 unlocked" data-video="1" aria-label="Mở hộp quà số 1">
+                            <span class="gift-status-badge badge-new">MỞ NGAY ✨</span>
+                            <div class="gift-lid"><div class="gift-bow"></div></div>
+                            <div class="gift-body">
+                                <div class="gift-ribbon-v"></div>
+                                <div class="gift-ribbon-h"></div>
+                                <span class="gift-tag">1</span>
+                            </div>
+                            <span class="gift-name">🌸 Mấy bèo ơi</span>
+                        </button>
+
+                        <!-- Hộp quà 2: Ban đầu ẩn, mở sau khi xem quà 1 -->
+                        <button class="gift-box gift-box-2 locked" data-video="2" aria-label="Mở hộp quà số 2">
+                            <span class="gift-status-badge badge-new">MỚI ✨</span>
+                            <div class="gift-lid"><div class="gift-bow"></div></div>
+                            <div class="gift-body">
+                                <div class="gift-ribbon-v"></div>
+                                <div class="gift-ribbon-h"></div>
+                                <span class="gift-tag">2</span>
+                            </div>
+                            <span class="gift-name">🌹 Mãi xinh tươi</span>
+                        </button>
+
+                        <!-- Hộp quà 3: Ban đầu ẩn, mở sau khi xem quà 2 -->
+                        <button class="gift-box gift-box-3 locked" data-video="3" aria-label="Mở hộp quà số 3">
+                            <span class="gift-status-badge badge-new">MỚI ✨</span>
+                            <div class="gift-lid"><div class="gift-bow"></div></div>
+                            <div class="gift-body">
+                                <div class="gift-ribbon-v"></div>
+                                <div class="gift-ribbon-h"></div>
+                                <span class="gift-tag">3</span>
+                            </div>
+                            <span class="gift-name">👑 Trùm cuối nè</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông báo xoay ngang trên Mobile (Portrait Mode ban đầu) -->
+    <div id="rotate-notice">
+        <div class="rotate-card">
+            <svg class="phone-icon-anim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect>
+                <line x1="12" y1="18" x2="12" y2="18.01"></line>
+            </svg>
+            <div class="rotate-title">Điều bí mật từ CLBTNQHQN 🌸</div>
+            <div class="rotate-desc">
+                Hãy xoay ngang điện thoại để chiêm ngưỡng cây hoa trái tim và các hộp quà bí mật nhé!
+            </div>
+            <div class="rotate-hint-audio">
+                (Có thể bật âm lượng ở mức vừa phải để lắng nghe âm nhạc 🎵)
+            </div>
+            <button id="btn-read-portrait" class="btn-read-portrait">
+                <span>Đọc thư & Mở quà ngay tại đây</span>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal đọc thư dạng dọc + 3 hộp quà tuần tự (Dành cho Mobile cầm dọc) -->
+    <div id="portrait-letter-modal">
+        <div class="portrait-letter-content">
+            <button id="btn-close-portrait" class="modal-close-btn" aria-label="Đóng thư">✕</button>
+            <div class="letter-header">
+                <span class="letter-badge">🌸 Chúc mừng 20/10 CLBTNQHQN</span>
+            </div>
+            <div class="portrait-letter-body">
+                <p>Xin chào! Là chúng mình – các <strong>"quàng tử"</strong> của <strong>CLBTNQHQN</strong> đây.</p>
+                <p>Nhân dịp ngày Phụ nữ Việt Nam 20/10, chúng mình có đôi lời muốn gửi gắm đến mọi người đó nha!</p>
+                <p>Mong rằng các <em>"bông hồng"</em> của CLB sẽ ngày càng xinh đẹp, tự tin, rạng rỡ, ngập tràn sức khỏe, học giỏi và luôn luôn hạnh phúc với những gì mình đang có.</p>
+                <p>Ngoài ra cũng không thể quên gửi một lời cảm ơn thật to lớn đến các bạn nữ vì đã luôn đồng hành và cùng chúng mình tạo nên những kỷ niệm thật đẹp!</p>
+            </div>
+            
+            <!-- 3 Hộp quà trong chế độ dọc (Tuần tự từng hộp quà) -->
+            <div class="portrait-gifts-wrapper">
+                <div class="portrait-gifts-title" id="portrait-gifts-title">🎁 Mở món quà đầu tiên cho mấy bèo nè:</div>
+                <div class="portrait-stage-relative">
+                    <!-- Nhân vật que chạy trong portrait modal -->
+                    <div id="runner-portrait" class="runner-character runner-portrait" aria-hidden="true">
+                        <div class="runner-bubble">
+                            <span id="runner-portrait-text">Tới mở quà nè! 🏃‍♂️💨</span>
+                        </div>
+                        <div class="runner-figure">
+                            <svg class="runner-svg" viewBox="0 0 80 100" width="58" height="74">
+                                <polygon points="34,16 46,2 48,18" fill="#ff4d6d" stroke="#ffd166" stroke-width="2"/>
+                                <circle cx="46" cy="2" r="3" fill="#ffd166"/>
+                                <circle class="runner-head" cx="40" cy="26" r="15" fill="#fffefb" stroke="#2b2323" stroke-width="3.2"/>
+                                <circle class="runner-eye-l" cx="35" cy="24" r="2.2" fill="#2b2323"/>
+                                <circle class="runner-eye-r" cx="44" cy="24" r="2.2" fill="#2b2323"/>
+                                <circle cx="32" cy="29" r="2.8" fill="#ff758f" opacity="0.6"/>
+                                <circle cx="47" cy="29" r="2.8" fill="#ff758f" opacity="0.6"/>
+                                <path class="runner-mouth" d="M36 29 Q40 34 44 29" stroke="#2b2323" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+                                <line class="runner-torso" x1="40" y1="41" x2="40" y2="66" stroke="#2b2323" stroke-width="3.6" stroke-linecap="round"/>
+                                <g class="runner-arms">
+                                    <path class="runner-arm-l" d="M40 46 L26 56 L18 50" stroke="#2b2323" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+                                    <path class="runner-arm-r" d="M40 46 L54 54 L64 62" stroke="#2b2323" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+                                </g>
+                                <g class="runner-legs">
+                                    <path class="runner-leg-l" d="M40 66 L28 78 L18 88" stroke="#2b2323" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+                                    <path class="runner-leg-r" d="M40 66 L52 76 L62 90" stroke="#2b2323" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+                                </g>
+                            </svg>
+                            <div class="runner-smoke">💨</div>
+                        </div>
+                    </div>
+
+                    <div class="gift-list portrait-gift-list" id="portrait-gift-list">
+                        <button class="gift-box gift-box-1 unlocked" data-video="1" aria-label="Mở hộp quà số 1">
+                            <span class="gift-status-badge badge-new">MỞ NGAY ✨</span>
+                            <div class="gift-lid"><div class="gift-bow"></div></div>
+                            <div class="gift-body">
+                                <div class="gift-ribbon-v"></div>
+                                <div class="gift-ribbon-h"></div>
+                                <span class="gift-tag">1</span>
+                            </div>
+                            <span class="gift-name">🌸 Mấy bèo ơi</span>
+                        </button>
+
+                        <button class="gift-box gift-box-2 locked" data-video="2" aria-label="Mở hộp quà số 2">
+                            <span class="gift-status-badge badge-new">MỚI ✨</span>
+                            <div class="gift-lid"><div class="gift-bow"></div></div>
+                            <div class="gift-body">
+                                <div class="gift-ribbon-v"></div>
+                                <div class="gift-ribbon-h"></div>
+                                <span class="gift-tag">2</span>
+                            </div>
+                            <span class="gift-name">🌹 Mãi xinh tươi</span>
+                        </button>
+
+                        <button class="gift-box gift-box-3 locked" data-video="3" aria-label="Mở hộp quà số 3">
+                            <span class="gift-status-badge badge-new">MỚI ✨</span>
+                            <div class="gift-lid"><div class="gift-bow"></div></div>
+                            <div class="gift-body">
+                                <div class="gift-ribbon-v"></div>
+                                <div class="gift-ribbon-h"></div>
+                                <span class="gift-tag">3</span>
+                            </div>
+                            <span class="gift-name">👑 Trùm cuối nè</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal nhắc nhở xoay dọc màn hình trên Mobile khi bấm mở hộp quà -->
+    <div id="rotate-to-portrait-modal" class="rotate-prompt-modal">
+        <div class="rotate-prompt-card">
+            <svg class="rotate-to-vert-anim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect>
+                <line x1="12" y1="18" x2="12" y2="18.01"></line>
+            </svg>
+            <div class="rotate-prompt-title">Xoay dọc điện thoại lại ngắm mấy bèo nheee 📱✨</div>
+            <div class="rotate-prompt-desc">
+                Video được quay theo khung hình dọc chuẩn chỉnh để mấy bèo xuất hiện lung linh và rõ nét nhất đó nha!
+            </div>
+            <button id="btn-force-play-video" class="btn-force-play">Xem luôn ở màn hình ngang ▶</button>
+            <button id="btn-cancel-prompt" class="btn-cancel-prompt">Quay lại</button>
+        </div>
+    </div>
+
+    <!-- Modal trình phát Video toàn màn hình (Fullscreen Theater) -->
+    <div id="video-modal" class="video-modal">
+        <!-- Thanh điều khiển nổi phía trên -->
+        <div class="video-top-bar">
+            <div class="video-badge-wrap">
+                <span id="video-title" class="video-title">🌸 Chúc mấy bèo 20/10 siêu cấp vui vẻ nheeee ✨</span>
+            </div>
+            <div class="video-actions">
+                <button id="btn-toggle-fullscreen" class="video-action-btn" aria-label="Toàn màn hình" title="Bật/Tắt toàn màn hình">
+                    <svg class="fs-icon-enter" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                    </svg>
+                    <svg class="fs-icon-exit" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none;">
+                        <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                    </svg>
+                </button>
+                <button id="btn-close-video" class="video-action-btn video-close-btn" aria-label="Đóng video" title="Đóng video">✕</button>
+            </div>
         </div>
 
+        <div class="video-container">
+            <div class="video-wrapper">
+                <video id="player-video" playsinline controls preload="auto"></video>
+            </div>
+        </div>
     </div>
-	<div id="rotate-notice">
-		Vui lòng xoay ngang màn hình<br>
-		để trải nghiệm nội dung tốt nhất!<br>
-		(có thể bật âm lượng ở mức vừa phải)<br>
-	</div>
-	
-    <audio id="myAudio" autoplay="autoplay">
-        <source src="music/nhac.mp3" type="audio/mp3" />
+
+    <!-- Nhạc nền -->
+    <audio id="myAudio" loop>
+        <source src="./assets/audio/nhac.mp3" type="audio/mp3">
     </audio>
 
+    <!-- Script điều khiển chính -->
+    <script src="./assets/js/script.js"></script>
 </body>
-<script src="./asset/script.js"></script>
-
 </html>
