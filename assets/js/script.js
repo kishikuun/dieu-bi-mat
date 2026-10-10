@@ -9,20 +9,34 @@ function adjustStageScale() {
   var targetW = 1100;
   var targetH = 680;
 
-  // Cân đối tỷ lệ theo cả chiều ngang và chiều dọc với khoảng an toàn
-  var scaleX = (winW * 0.96) / targetW;
-  var scaleY = (winH * 0.92) / targetH;
-  var scale = Math.min(scaleX, scaleY);
+  var isMobileLand = (winW > winH) && (winH <= 520);
 
-  // Không ép min scale quá cao làm tràn màn hình điện thoại (đặc biệt Safari có thanh URL)
-  if (scale < 0.28) scale = 0.28;
-  if (scale > 1.25) scale = 1.25;
+  var scale;
+  if (isMobileLand) {
+    // Trên điện thoại xoay ngang (ví dụ iPhone 14: ~844 x 310-390px Safari)
+    // Tối ưu theo chiều cao vùng nội dung thực tế (~630px) để tỷ lệ to rõ, dễ nhìn, dễ bấm
+    var scaleH = (winH * 0.96) / 630;
+    var scaleW = (winW * 0.96) / targetW;
+    scale = Math.min(scaleW, scaleH);
+    // Giới hạn an toàn: không nhỏ hơn 0.46 để đảm bảo chữ và nút luôn dễ tương tác
+    if (scale < 0.46) scale = 0.46;
+    if (scale > 0.60) scale = 0.60;
+  } else {
+    // Màn hình desktop hoặc tablet
+    var scaleX = (winW * 0.96) / targetW;
+    var scaleY = (winH * 0.92) / targetH;
+    scale = Math.min(scaleX, scaleY);
+    if (scale < 0.28) scale = 0.28;
+    if (scale > 1.25) scale = 1.25;
+  }
+
   document.documentElement.style.setProperty('--stage-scale', scale);
 }
 
 window.addEventListener('resize', adjustStageScale);
 window.addEventListener('orientationchange', function () {
-  setTimeout(adjustStageScale, 200);
+  setTimeout(adjustStageScale, 50);
+  setTimeout(adjustStageScale, 250);
 });
 adjustStageScale();
 
@@ -314,11 +328,16 @@ function runVectorCharacterToBox(videoIndex, giftBoxEl, callback) {
     }
   }
 
-  // Tính vị trí tương đối từ cửa nhà đến hộp quà
+  // Tính vị trí tương đối từ cửa nhà đến hộp quà (chuẩn xác ở mọi tỷ lệ scale của sân khấu)
   var containerRect = runner.parentElement.getBoundingClientRect();
   var giftRect = giftBoxEl.getBoundingClientRect();
   var runnerBaseLeft = isPortrait ? 14 : 18;
-  var targetX = (giftRect.left - containerRect.left) - runnerBaseLeft - 32;
+  var currentScale = 1;
+  if (!isPortrait) {
+    currentScale = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--stage-scale')) || 1;
+  }
+  var diffX = (giftRect.left - containerRect.left) / currentScale;
+  var targetX = diffX - runnerBaseLeft - 32;
   if (targetX < 24) targetX = 24;
 
   // 1. Chạy tới hộp quà
@@ -641,11 +660,11 @@ $(document).on("click", ".gift-box", function (e) {
       return true;
     }
 
-    // Touch hit area expansion (55px proximity around heart center)
+    // Touch hit area expansion (85px proximity around heart center for effortless tapping on mobile)
     var heartX = seed.heart.point.x;
     var heartY = seed.heart.point.y;
     var dist = Math.hypot(canvasX - heartX, canvasY - heartY);
-    if (dist <= 55) {
+    if (dist <= 85) {
       return true;
     }
 
