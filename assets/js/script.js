@@ -152,7 +152,7 @@ var giftGreetings = {
   },
   2: {
     name: "🌹 Mãi xinh tươi",
-    title: "🌹 Chúc các bông hồng CLB mãi tươi không cần tưới, cười toe toét cả ngày 🥰",
+    title: "🌹 Chúc mấy bèo mãi xinh tươi & cười toe toét cả ngày 🥰",
     prompt: "🌹 Món quà tươi rói tiếp theo nè",
     speechRun: "Tớ từ nhà phi ra mở quà 2 tới đêyyy! 🏃‍♂️💨",
     speechMid: "Vèo vèo vèo... tớ đến ngay đây! 🏃‍♂️💨",
@@ -162,7 +162,7 @@ var giftGreetings = {
   },
   3: {
     name: "👑 Trùm cuối nè",
-    title: "👑 Trùm cuối: Chúc mấy bèo luôn là công chúa hạnh phúc & rạng rỡ nhất trần đời! 💖",
+    title: "👑 Trùm cuối: Chúc mấy bèo luôn rạng rỡ & ngập tràn hạnh phúc! 💖",
     prompt: "👑 Món quà trùm cuối siêu đặc biệt",
     speechRun: "Trùm cuối xịn sò tới đêyyy, tớ phóng từ nhà ra nè! 🚀✨",
     speechMid: "Tăng tốc hết cỡ nàooo... vùuuu! 🚀💨",

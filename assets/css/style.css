@@ -734,20 +734,64 @@ html, body {
 
 .video-badge-wrap {
   pointer-events: auto;
+  min-width: 0;
+  flex: 0 1 auto;
+  max-width: calc(100% - 100px);
 }
 
 .video-title {
   color: #ffffff;
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 700;
-  letter-spacing: 0.3px;
-  background: rgba(20, 20, 20, 0.72);
+  letter-spacing: 0.2px;
+  background: rgba(20, 20, 20, 0.78);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: 7px 18px;
+  padding: 6px 14px;
   border-radius: 30px;
   border: 1px solid rgba(255, 215, 0, 0.5);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100%;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .video-top-bar {
+    top: max(10px, env(safe-area-inset-top));
+    left: max(10px, env(safe-area-inset-left));
+    right: max(10px, env(safe-area-inset-right));
+  }
+
+  .video-badge-wrap {
+    max-width: calc(100% - 84px) !important;
+  }
+
+  .video-title {
+    font-size: 11.8px !important;
+    padding: 5px 10px !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+  }
+
+  .video-actions {
+    gap: 6px !important;
+  }
+
+  .video-action-btn {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .video-action-btn svg {
+    width: 17px !important;
+    height: 17px !important;
+  }
 }
 
 .video-actions {
@@ -993,24 +1037,24 @@ html, body {
 @media (max-height: 550px) and (orientation: landscape) {
   #text {
     left: 30px;
-    top: 25px;
-    width: 450px;
-    max-height: 480px;
-    padding: 16px 20px;
+    top: 20px;
+    width: 520px;
+    max-height: 520px;
+    padding: 18px 24px;
   }
 
   #code {
-    font-size: 15.5px !important;
-    line-height: 1.5 !important;
+    font-size: 19.5px !important;
+    line-height: 1.65 !important;
   }
 
   .say {
-    margin: 0 0 6px 0 !important;
+    margin: 0 0 8px 0 !important;
   }
 
   .letter-badge {
-    font-size: 12px !important;
-    padding: 3.5px 10px !important;
+    font-size: 14px !important;
+    padding: 4px 12px !important;
   }
 
   .gift-boxes-container {
@@ -1221,8 +1265,9 @@ body.video-playing #rotate-notice {
   display: none;
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
   z-index: 10000;
   background: rgba(40, 20, 20, 0.55);
   backdrop-filter: blur(8px);
@@ -1230,6 +1275,7 @@ body.video-playing #rotate-notice {
   align-items: center;
   justify-content: center;
   padding: 16px;
+  box-sizing: border-box;
   overflow-y: auto;
 }
 
@@ -1239,14 +1285,14 @@ body.video-playing #rotate-notice {
 
 .portrait-letter-content {
   width: 100%;
-  max-width: 440px;
+  max-width: 520px;
   max-height: 92vh;
   overflow-y: auto;
   background: #ffffff;
   border-radius: 24px;
   border: 1.5px solid rgba(240, 160, 160, 0.4);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
-  padding: 26px 20px;
+  padding: 26px 22px;
   position: relative;
   animation: modal-fade-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1274,14 +1320,14 @@ body.video-playing #rotate-notice {
 }
 
 .portrait-letter-body {
-  font-size: 16px;
-  line-height: 1.75;
+  font-size: 18.5px;
+  line-height: 1.72;
   color: var(--color-text-main);
   margin-top: 14px;
 }
 
 .portrait-letter-body p {
-  margin: 0 0 12px 0;
+  margin: 0 0 14px 0;
   text-align: justify;
 }
 
@@ -1364,6 +1410,39 @@ body.video-playing #rotate-notice {
 
 /* Tối ưu modal xoay dọc trên mọi điện thoại xoay ngang (iPhone 14 / Android landscape) */
 @media (max-height: 550px) and (orientation: landscape) {
+  /* Tối ưu khung thư và kích thước chữ trên mobile landscape (to, rõ, tận dụng chiều rộng màn hình, không bị thừa khoảng trống) */
+  #portrait-letter-modal {
+    padding: 10px 18px !important;
+  }
+
+  .portrait-letter-content {
+    max-width: 720px !important;
+    width: 94vw !important;
+    max-height: 94vh !important;
+    padding: 20px 28px !important;
+    border-radius: 20px !important;
+  }
+
+  .portrait-letter-body {
+    font-size: 19.5px !important;
+    line-height: 1.68 !important;
+    margin-top: 10px !important;
+  }
+
+  .portrait-letter-body p {
+    margin: 0 0 10px 0 !important;
+  }
+
+  .letter-badge {
+    font-size: 14px !important;
+    padding: 4px 12px !important;
+  }
+
+  .portrait-gifts-title {
+    font-size: 16px !important;
+    margin-bottom: 12px !important;
+  }
+
   .rotate-prompt-modal {
     padding: 6px 12px !important;
   }
