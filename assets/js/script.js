@@ -14,12 +14,11 @@ function adjustStageScale() {
   var scale;
   if (isMobileLand) {
     // Trên điện thoại xoay ngang (ví dụ iPhone 14: ~844 x 310-390px Safari)
-    // Tối ưu theo chiều cao vùng nội dung thực tế (~630px) để tỷ lệ to rõ, dễ nhìn, dễ bấm
-    var scaleH = (winH * 0.96) / 630;
-    var scaleW = (winW * 0.96) / targetW;
+    // Cân đối để toàn bộ 680px chiều cao luôn nằm gọn 100% trong khung nhìn, không bị cắt xén chân trang/ngôi nhà
+    var scaleH = (winH * 0.93) / targetH;
+    var scaleW = (winW * 0.95) / targetW;
     scale = Math.min(scaleW, scaleH);
-    // Giới hạn an toàn: không nhỏ hơn 0.46 để đảm bảo chữ và nút luôn dễ tương tác
-    if (scale < 0.46) scale = 0.46;
+    if (scale < 0.32) scale = 0.32;
     if (scale > 0.60) scale = 0.60;
   } else {
     // Màn hình desktop hoặc tablet
@@ -405,6 +404,7 @@ function playGiftVideo(index) {
   pendingVideoIndex = null;
   pendingGiftElement = null;
 
+  document.body.classList.add("video-playing");
   videoModal.classList.add("open");
 
   var playPromise = playerVideo.play();
@@ -427,6 +427,8 @@ if (playerVideo) {
 }
 
 function closeGiftVideo() {
+  document.body.classList.remove("video-playing");
+
   if (playerVideo) {
     playerVideo.pause();
     playerVideo.removeAttribute("src");
@@ -457,6 +459,11 @@ function closeGiftVideo() {
   if (audio && wasMusicPlayingBeforeVideo) {
     audio.play().then(updateMusicBtnState).catch(function () {});
   }
+
+  // Nếu người dùng đang ở chế độ xoay dọc, mở thẳng giao diện xem thư & quà dọc
+  if (window.innerHeight > window.innerWidth && portraitModal) {
+    portraitModal.classList.add("open");
+  }
 }
 
 function handleGiftClick(videoIndex, element) {
@@ -483,11 +490,10 @@ function handleGiftClick(videoIndex, element) {
   }
 }
 
-// Bắt sự kiện xoay màn hình: khi người dùng xoay dọc lại, chạy hoạt ảnh mở quà và chiếu video
+// Bắt sự kiện xoay màn hình: khi người dùng xoay dọc lại, TỰ ĐỘNG PHÁT VIDEO NGAY LẬP TỨC toàn màn hình
 function checkPendingVideoRotation() {
   if (pendingVideoIndex !== null && window.innerHeight > window.innerWidth) {
     var vIndex = pendingVideoIndex;
-    var targetEl = pendingGiftElement || document.querySelector('.gift-box[data-video="' + vIndex + '"]');
     pendingVideoIndex = null;
     pendingGiftElement = null;
 
@@ -495,19 +501,15 @@ function checkPendingVideoRotation() {
       rotateModal.classList.remove("open");
     }
 
-    if (targetEl) {
-      runVectorCharacterToBox(vIndex, targetEl, function () {
-        playGiftVideo(vIndex);
-      });
-    } else {
-      playGiftVideo(vIndex);
-    }
+    // Tự động phát video luôn, không cần thêm bất kỳ bước thao tác hay bấm bảng nào
+    playGiftVideo(vIndex);
   }
 }
 
 window.addEventListener("resize", checkPendingVideoRotation);
 window.addEventListener("orientationchange", function () {
-  setTimeout(checkPendingVideoRotation, 250);
+  setTimeout(checkPendingVideoRotation, 100);
+  setTimeout(checkPendingVideoRotation, 300);
 });
 
 // Nút xem luôn ở màn hình ngang (trong trường hợp người dùng khóa xoay màn hình)
@@ -547,19 +549,11 @@ if (btnCancelPrompt) {
   });
 }
 
-// Đóng video modal
+// Đóng video modal (Chỉ đóng khi bấm nút X hoặc phím ESC, tránh văng video khi xoay màn hình chạm phải mép)
 if (btnCloseVideo) {
   btnCloseVideo.addEventListener("click", function (e) {
     e.stopPropagation();
     closeGiftVideo();
-  });
-}
-
-if (videoModal) {
-  videoModal.addEventListener("click", function (e) {
-    if (e.target === videoModal) {
-      closeGiftVideo();
-    }
   });
 }
 

@@ -911,22 +911,26 @@ html, body {
 }
 
 .btn-force-play {
-  width: 100%;
-  padding: 12px 18px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-  color: #ffffff;
-  border: none;
+  width: auto;
+  min-width: 190px;
+  padding: 9px 18px;
+  background: rgba(0, 0, 0, 0.05);
+  color: #6c5a5a;
+  border: 1.5px solid rgba(0, 0, 0, 0.14);
   border-radius: 50px;
-  font-size: 14.5px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: var(--shadow-btn);
-  margin-bottom: 10px;
-  transition: transform 0.15s ease;
+  box-shadow: none;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
 }
 
-.btn-force-play:active {
-  transform: scale(0.98);
+.btn-force-play:hover, .btn-force-play:active {
+  background: rgba(0, 0, 0, 0.09);
+  color: #2b2323;
+  border-color: rgba(0, 0, 0, 0.25);
+  transform: scale(0.99);
 }
 
 .btn-cancel-prompt {
@@ -988,98 +992,99 @@ html, body {
 
 @media (max-height: 550px) and (orientation: landscape) {
   #text {
-    left: 24px;
-    top: 20px;
-    width: 505px;
-    max-height: 590px;
-    padding: 20px 24px;
+    left: 30px;
+    top: 25px;
+    width: 450px;
+    max-height: 480px;
+    padding: 16px 20px;
   }
 
   #code {
-    font-size: 20px !important;
-    line-height: 1.58 !important;
+    font-size: 15.5px !important;
+    line-height: 1.5 !important;
   }
 
   .say {
-    margin: 0 0 8px 0 !important;
+    margin: 0 0 6px 0 !important;
   }
 
   .letter-badge {
-    font-size: 14px !important;
-    padding: 4.5px 12px !important;
+    font-size: 12px !important;
+    padding: 3.5px 10px !important;
   }
 
   .gift-boxes-container {
-    left: 550px;
-    top: 485px;
-    width: 530px;
+    left: 560px;
+    top: 445px;
+    width: 500px;
   }
 
   .gift-hint-banner {
-    font-size: 14.5px !important;
-    padding: 6px 14px !important;
-    margin-bottom: 10px !important;
+    font-size: 13px !important;
+    padding: 5px 12px !important;
+    margin-bottom: 24px !important; /* Tách biệt hoàn toàn khỏi huy hiệu MỞ NGAY */
   }
 
   .gift-stage-relative {
-    min-height: 130px;
+    min-height: 115px;
+    padding-top: 16px; /* Khoảng thở an toàn tuyệt đối cho huy hiệu quà */
   }
 
   .vector-house svg {
-    width: 86px !important;
-    height: 98px !important;
+    width: 76px !important;
+    height: 88px !important;
   }
 
   .runner-bubble {
-    font-size: 14px !important;
-    padding: 5px 13px !important;
+    font-size: 13px !important;
+    padding: 4px 11px !important;
   }
 
   .gift-list {
-    margin-left: 105px !important;
-    gap: 22px !important;
+    margin-left: 92px !important;
+    gap: 18px !important;
   }
 
   .gift-lid {
-    width: 80px !important;
-    height: 17px !important;
+    width: 64px !important;
+    height: 14px !important;
   }
 
   .gift-bow {
-    width: 24px !important;
-    height: 13px !important;
-    top: -12px !important;
+    width: 20px !important;
+    height: 11px !important;
+    top: -10px !important;
   }
 
   .gift-body {
-    width: 70px !important;
-    height: 62px !important;
+    width: 54px !important;
+    height: 48px !important;
   }
 
   .gift-ribbon-v {
-    width: 13px !important;
+    width: 11px !important;
   }
 
   .gift-ribbon-h {
-    height: 13px !important;
+    height: 11px !important;
   }
 
   .gift-tag {
-    width: 24px !important;
-    height: 24px !important;
-    font-size: 13.5px !important;
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 11.5px !important;
   }
 
   .gift-name {
-    font-size: 13.5px !important;
-    padding: 3.5px 10px !important;
-    margin-top: 6px !important;
+    font-size: 11.5px !important;
+    padding: 2.5px 8px !important;
+    margin-top: 5px !important;
   }
 
   .gift-status-badge {
-    font-size: 12px !important;
-    padding: 3px 8px !important;
-    top: -15px !important;
+    font-size: 10.5px !important;
+    padding: 2px 7px !important;
+    top: -13px !important;
   }
 
   .gift-box {
@@ -1090,7 +1095,7 @@ html, body {
   .gift-box::after {
     content: '';
     position: absolute;
-    inset: -14px -10px;
+    inset: -18px -14px;
     z-index: 10;
   }
 }
@@ -1107,6 +1112,14 @@ html, body {
   #rotate-notice {
     display: flex !important;
   }
+
+  body.video-playing #rotate-notice {
+    display: none !important;
+  }
+}
+
+body.video-playing #rotate-notice {
+  display: none !important;
 }
 
 #rotate-notice {
@@ -1383,10 +1396,14 @@ html, body {
   }
 
   .btn-force-play {
-    padding: 8px 18px !important;
-    font-size: 12.5px !important;
+    padding: 7px 16px !important;
+    font-size: 12px !important;
     margin-bottom: 4px !important;
     border-radius: 30px !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+    color: #6c5a5a !important;
+    border: 1px solid rgba(0, 0, 0, 0.14) !important;
+    box-shadow: none !important;
   }
 
   .btn-cancel-prompt {
