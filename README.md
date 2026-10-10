@@ -62,10 +62,16 @@ dieu-bi-mat/
    - Trên điện thoại (khung hình dọc), video 9:16 vừa vặn trọn vẹn màn hình điện thoại từ trên xuống dưới.
    - Trên máy tính (PC), video chiếu ở độ cao tối đa sát mép màn hình, kèm nút phóng to toàn màn hình (Hardware Fullscreen) và nút đóng `✕` tinh tế.
 
-4. **Yêu cầu xoay dọc màn hình trên điện thoại (Mobile UX)**:
-   - Khi người dùng đang xoay ngang điện thoại (xem cây hoa) và bấm mở hộp quà, màn hình sẽ hiển thị lời nhắc: **"Xoay dọc điện thoại lại nhé! 📱"**.
-   - Ngay khi người dùng **xoay dọc điện thoại lại**, hệ thống tự động phát hiện, chú bé que sẽ chạy tới mở hộp quà và video toàn màn hình sẽ phát ngay lập tức!
-   - Có sẵn nút *"Xem luôn ở màn hình ngang ▶"* nếu người dùng đang khóa xoay màn hình (orientation lock).
-   - Trong chế độ dọc ban đầu, người dùng cũng có thể bấm *"Đọc thư & Mở quà ngay tại đây"* để đọc thư và mở các hộp quà theo đúng trình tự.
+4. **Ngôi nhà nhỏ vector sắc màu (Xanh dương chủ đạo)**:
+   - Một ngôi nhà vector ấm cúng với mái xanh đại dương, ống khói bốc khói nhẹ nhàng, cửa sổ ánh vàng và cửa chính vòm xinh xắn tọa lạc vĩnh viễn bên dưới gốc cây.
+   - Khi bấm mở quà, cánh cửa nhà hé mở và chú bé que sẽ chui ra từ ngôi nhà để phi nhanh tới mở quà!
+
+5. **Tối ưu hiển thị iPhone 14 & Màn hình di động xoay ngang**:
+   - Sử dụng chuẩn `100dvh` và thuật toán co giãn sân khấu thông minh thích ứng hoàn hảo với các thanh điều hướng của Safari trên iPhone 14 (2532 x 1170 px) và mọi dòng smartphone khác.
+   - Trọn vẹn tán cây hoa, gốc cây, bức thư và các hộp quà luôn nằm gọn gàng, không bị mất gốc cây hay tràn chữ.
+
+6. **Khóa bảo vệ trải nghiệm – Không cho đọc thư trước khi xem xong animation**:
+   - Ở chế độ xoay dọc ban đầu, người dùng được nhắc nhở xoay ngang để chiêm ngưỡng trọn vẹn hành trình hoa nở và bức thư viết từng nét chữ.
+   - Nút xem lại thư chỉ được kích hoạt sau khi toàn bộ hoạt cảnh đã diễn ra trọn vẹn, đảm bảo giữ trọn cảm xúc bất ngờ cho người xem.
 
 

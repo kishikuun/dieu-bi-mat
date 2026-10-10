@@ -2,18 +2,21 @@
 // DIEU BI MAT - Core Animation & Interaction Controller
 // ==========================================================================
 
-// Responsive Stage Scaling
+// Responsive Stage Scaling (Tối ưu chuẩn xác cho cả iPhone 14 landscape & màn hình PC)
 function adjustStageScale() {
-  var winW = window.innerWidth;
-  var winH = window.innerHeight;
+  var winW = window.innerWidth || document.documentElement.clientWidth;
+  var winH = window.innerHeight || document.documentElement.clientHeight;
   var targetW = 1100;
   var targetH = 680;
 
-  var scaleX = (winW * 0.94) / targetW;
-  var scaleY = (winH * 0.94) / targetH;
+  // Cân đối tỷ lệ theo cả chiều ngang và chiều dọc với khoảng an toàn
+  var scaleX = (winW * 0.96) / targetW;
+  var scaleY = (winH * 0.92) / targetH;
   var scale = Math.min(scaleX, scaleY);
 
-  if (scale < 0.45) scale = 0.45;
+  // Không ép min scale quá cao làm tràn màn hình điện thoại (đặc biệt Safari có thanh URL)
+  if (scale < 0.28) scale = 0.28;
+  if (scale > 1.25) scale = 1.25;
   document.documentElement.style.setProperty('--stage-scale', scale);
 }
 
@@ -72,7 +75,8 @@ if (musicBtn) {
 document.addEventListener("click", playAudio);
 document.addEventListener("touchstart", playAudio);
 
-// Portrait Mode Direct Letter Reader
+// Portrait Mode Direct Letter Reader (Bảo vệ tuyệt đối: Không cho đọc thư trước nếu chưa xem xong animation)
+var isAnimationFinished = false;
 var btnReadPortrait = document.getElementById("btn-read-portrait");
 var portraitModal = document.getElementById("portrait-letter-modal");
 var btnClosePortrait = document.getElementById("btn-close-portrait");
@@ -80,6 +84,7 @@ var btnClosePortrait = document.getElementById("btn-close-portrait");
 if (btnReadPortrait && portraitModal) {
   btnReadPortrait.addEventListener("click", function (e) {
     e.stopPropagation();
+    if (!isAnimationFinished) return; // Chặn đọc trước khi animation chưa xong
     portraitModal.classList.add("open");
     playAudio();
   });
@@ -126,7 +131,7 @@ var giftGreetings = {
     name: "🌸 Mấy bèo ơi",
     title: "🌸 Chúc mấy bèo 20/10 siêu cấp vui vẻ nheeee ✨",
     prompt: "🌸 Món quà xinh xắn cho mấy bèo nè",
-    speechRun: "Chờ xíu, tớ phi như bay tới mở quà cho mấy bèo nè! 🏃‍♂️💨",
+    speechRun: "Tớ từ trong nhà phi ra mở quà 1 cho mấy bèo nè! 🏃‍♂️💨",
     speechMid: "Sắp tới rồiii, ráng đợi tớ xíu nhenn! 🏃‍♂️💨",
     speechOpen: "Tadaaa! Mấy bèo mở mắt to đón quà nhen! 🌸🎉",
     stageHint: "✨ Có món quà đầu tiên cho mấy bèo nè! Bấm mở liền tay 👇",
@@ -136,7 +141,7 @@ var giftGreetings = {
     name: "🌹 Mãi xinh tươi",
     title: "🌹 Chúc các bông hồng CLB mãi tươi không cần tưới, cười toe toét cả ngày 🥰",
     prompt: "🌹 Món quà tươi rói tiếp theo nè",
-    speechRun: "Quà số 2 tới đâyyy, chờ tớ xíu nhe mấy bèo! 🏃‍♂️💨",
+    speechRun: "Tớ từ nhà phi ra mở quà 2 tới đêyyy! 🏃‍♂️💨",
     speechMid: "Vèo vèo vèo... tớ đến ngay đây! 🏃‍♂️💨",
     speechOpen: "Bùm chíu! Nụ cười tỏa nắng xuất hiện nè! 🌹✨",
     stageHint: "🎉 Tuyệt vời! Món quà số 2 đã lộ diện, bấm mở tiếp để cười toe toét nàoo! 👇",
@@ -146,7 +151,7 @@ var giftGreetings = {
     name: "👑 Trùm cuối nè",
     title: "👑 Trùm cuối: Chúc mấy bèo luôn là công chúa hạnh phúc & rạng rỡ nhất trần đời! 💖",
     prompt: "👑 Món quà trùm cuối siêu đặc biệt",
-    speechRun: "Món quà trùm cuối xịn sò nhất trần đời tới đêyyy! 🚀✨",
+    speechRun: "Trùm cuối xịn sò tới đêyyy, tớ phóng từ nhà ra nè! 🚀✨",
     speechMid: "Tăng tốc hết cỡ nàooo... vùuuu! 🚀💨",
     speechOpen: "Úm ba la xì bùa! Trùm cuối xuất hiện chói lóa luôn! 👑💖",
     stageHint: "🌟 TRÙM CUỐI ĐÂY RỒI: Món quà bất ngờ nhất đã xuất hiện! Mở ngay kẻo lỡ 👇",
@@ -261,11 +266,12 @@ if (btnToggleFullscreen) {
   });
 }
 
-// Nhân vật que vui nhộn chạy tới mở hộp quà (kéo dài thêm 50% ở lần đầu: ~2.85s chạy + ~2.25s mở = 5.1s)
+// Nhân vật que vui nhộn chui ra từ ngôi nhà chạy tới mở hộp quà (kéo dài thêm 50% ở lần đầu: ~2.85s chạy + ~2.25s mở = 5.1s)
 function runVectorCharacterToBox(videoIndex, giftBoxEl, callback) {
   var isPortrait = !giftBoxEl.closest("#gift-boxes-stage");
   var runner = isPortrait ? document.getElementById("runner-portrait") : document.getElementById("runner-stage");
   var bubbleText = isPortrait ? document.getElementById("runner-portrait-text") : document.getElementById("runner-text");
+  var house = isPortrait ? document.getElementById("house-portrait") : document.getElementById("house-stage");
 
   if (!runner || isRunnerActive) {
     if (callback) callback();
@@ -275,6 +281,11 @@ function runVectorCharacterToBox(videoIndex, giftBoxEl, callback) {
   isRunnerActive = true;
   var isFirstTime = !openedGifts[videoIndex];
   var greeting = giftGreetings[videoIndex] || giftGreetings[1];
+
+  // Mở cửa ngôi nhà nhỏ để người que chui ra
+  if (house) {
+    house.classList.add("door-open");
+  }
 
   // Thời gian chạy và mở: Lần đầu kéo dài thêm 50% (~2.85s chạy + ~2.25s mở = 5.1s). Đã xem: nhanh mượt (~0.4s + ~0.35s = 0.75s)
   var runDuration = isFirstTime ? 2850 : 400;
@@ -299,15 +310,16 @@ function runVectorCharacterToBox(videoIndex, giftBoxEl, callback) {
   } else {
     runner.classList.add("fast-run");
     if (bubbleText) {
-      bubbleText.textContent = "Tớ mở lại ngay đâyyy! ⚡";
+      bubbleText.textContent = "Tớ phi ra mở lại ngay đâyyy! ⚡";
     }
   }
 
-  // Tính vị trí tương đối
+  // Tính vị trí tương đối từ cửa nhà đến hộp quà
   var containerRect = runner.parentElement.getBoundingClientRect();
   var giftRect = giftBoxEl.getBoundingClientRect();
-  var targetX = (giftRect.left - containerRect.left) - 40;
-  if (targetX < 10) targetX = 10;
+  var runnerBaseLeft = isPortrait ? 14 : 18;
+  var targetX = (giftRect.left - containerRect.left) - runnerBaseLeft - 32;
+  if (targetX < 24) targetX = 24;
 
   // 1. Chạy tới hộp quà
   runner.classList.remove("opening-jump");
@@ -333,6 +345,9 @@ function runVectorCharacterToBox(videoIndex, giftBoxEl, callback) {
       runner.classList.remove("visible", "opening-jump", "fast-run");
       runner.style.transform = "translateX(0)";
       giftBoxEl.classList.remove("box-popping");
+      if (house) {
+        house.classList.remove("door-open");
+      }
       isRunnerActive = false;
 
       if (callback) callback();
@@ -731,7 +746,12 @@ $(document).on("click", ".gift-box", function (e) {
     Jscex.compile("async", function () {
       $("#text").addClass("visible-card");
       $("#code").show().typewriter(function () {
+        isAnimationFinished = true;
         $("#gift-boxes-stage").addClass("revealed");
+        var btnP = document.getElementById("btn-read-portrait");
+        if (btnP) {
+          btnP.style.display = "flex";
+        }
       });
       if ($("#clock-box").length) {
         $("#clock-box").fadeIn(500);
