@@ -329,7 +329,11 @@ html, body {
   font-size: 12px;
   font-weight: 700;
   color: #2b2323;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 220px;
+  text-align: center;
+  line-height: 1.35;
+  word-break: break-word;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   margin-bottom: 4px;
   animation: bubble-wobble 0.6s ease-in-out infinite alternate;
@@ -1031,30 +1035,47 @@ html, body {
 }
 
 /* ==========================================================================
-   MOBILE LANDSCAPE ADJUSTMENTS (HEIGHT <= 550px)
+   MOBILE LANDSCAPE ADJUSTMENTS (HEIGHT <= 600px)
    ========================================================================== */
 
-@media (max-height: 550px) and (orientation: landscape) {
+@media (max-height: 600px) and (orientation: landscape) {
   #text {
-    left: 30px;
-    top: 20px;
-    width: 520px;
-    max-height: 520px;
-    padding: 18px 24px;
+    left: 28px !important;
+    top: 15px !important;
+    width: 525px !important;
+    max-height: 650px !important;
+    padding: 18px 22px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    word-break: break-word !important;
   }
 
+  #text::-webkit-scrollbar {
+    width: 4px;
+  }
+  #text::-webkit-scrollbar-thumb {
+    background: rgba(230, 57, 70, 0.25);
+    border-radius: 4px;
+  }
+
+  /* Tăng kích cỡ chữ thư ở mobile lên 50% so với hiện tại (19.5px * 1.5 = 29.25px) */
   #code {
-    font-size: 19.5px !important;
-    line-height: 1.65 !important;
+    font-size: 29.25px !important;
+    line-height: 1.52 !important;
+    word-break: break-word !important;
   }
 
   .say {
-    margin: 0 0 8px 0 !important;
+    margin: 0 0 9px 0 !important;
+    text-align: left !important;
+    word-break: break-word !important;
   }
 
   .letter-badge {
-    font-size: 14px !important;
-    padding: 4px 12px !important;
+    font-size: 16.5px !important;
+    padding: 5px 14px !important;
+    margin-bottom: 12px !important;
   }
 
   .gift-boxes-container {
@@ -1067,6 +1088,10 @@ html, body {
     font-size: 13px !important;
     padding: 5px 12px !important;
     margin-bottom: 24px !important; /* Tách biệt hoàn toàn khỏi huy hiệu MỞ NGAY */
+    white-space: normal !important;
+    max-width: 480px !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
   }
 
   .gift-stage-relative {
@@ -1080,8 +1105,13 @@ html, body {
   }
 
   .runner-bubble {
-    font-size: 13px !important;
+    font-size: 12.5px !important;
     padding: 4px 11px !important;
+    white-space: normal !important;
+    max-width: 230px !important;
+    text-align: center !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
   }
 
   .gift-list {
@@ -1159,6 +1189,30 @@ html, body {
 
   body.video-playing #rotate-notice {
     display: none !important;
+  }
+
+  /* Tăng kích cỡ chữ thư ở mobile portrait lên 50% so với hiện tại (18.5px * 1.5 = 27.75px) */
+  .portrait-letter-body {
+    font-size: 27.75px !important;
+    line-height: 1.55 !important;
+  }
+
+  .portrait-letter-body p {
+    margin: 0 0 12px 0 !important;
+    text-align: left !important;
+    word-break: break-word !important;
+  }
+
+  .portrait-letter-content .letter-badge {
+    font-size: 16.5px !important;
+    padding: 6px 14px !important;
+  }
+
+  .portrait-letter-content {
+    max-height: 90dvh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    word-break: break-word !important;
   }
 }
 
@@ -1408,39 +1462,20 @@ body.video-playing #rotate-notice {
   .portrait-gift-list .gift-name { font-size: 10px; padding: 1.5px 5px; }
 }
 
-/* Tối ưu modal xoay dọc trên mọi điện thoại xoay ngang (iPhone 14 / Android landscape) */
-@media (max-height: 550px) and (orientation: landscape) {
-  /* Tối ưu khung thư và kích thước chữ trên mobile landscape (to, rõ, tận dụng chiều rộng màn hình, không bị thừa khoảng trống) */
+/* Tối ưu màn hình Mobile Landscape (Xoay ngang):
+   Tuyệt đối ẩn modal xem thư dọc và thông báo xoay dọc khi ở màn hình ngang,
+   đảm bảo sân khấu chính (cây hoa nở & thư gốc) luôn được hiển thị trọn vẹn, không bị che khuất hay tràn chữ */
+@media (max-height: 600px) and (orientation: landscape) {
   #portrait-letter-modal {
-    padding: 10px 18px !important;
+    display: none !important;
   }
 
-  .portrait-letter-content {
-    max-width: 720px !important;
-    width: 94vw !important;
-    max-height: 94vh !important;
-    padding: 20px 28px !important;
-    border-radius: 20px !important;
+  #rotate-notice {
+    display: none !important;
   }
 
-  .portrait-letter-body {
-    font-size: 19.5px !important;
-    line-height: 1.68 !important;
-    margin-top: 10px !important;
-  }
-
-  .portrait-letter-body p {
-    margin: 0 0 10px 0 !important;
-  }
-
-  .letter-badge {
-    font-size: 14px !important;
-    padding: 4px 12px !important;
-  }
-
-  .portrait-gifts-title {
-    font-size: 16px !important;
-    margin-bottom: 12px !important;
+  #main {
+    display: flex !important;
   }
 
   .rotate-prompt-modal {
@@ -1489,4 +1524,26 @@ body.video-playing #rotate-notice {
     font-size: 11.5px !important;
     padding: 2px !important;
   }
+}
+
+/* Đảm bảo tuyệt đối: Trong bất kỳ trạng thái xoay ngang nào, modal đọc thư dọc và thông báo dọc phải biến mất để hiện lại cây hoa */
+@media screen and (orientation: landscape) {
+  #portrait-letter-modal {
+    display: none !important;
+  }
+  #rotate-notice {
+    display: none !important;
+  }
+}
+
+body.is-landscape #portrait-letter-modal {
+  display: none !important;
+}
+
+body.is-landscape #rotate-notice {
+  display: none !important;
+}
+
+body.is-landscape #main {
+  display: flex !important;
 }

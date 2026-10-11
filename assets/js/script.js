@@ -9,7 +9,7 @@ function adjustStageScale() {
   var targetW = 1100;
   var targetH = 680;
 
-  var isMobileLand = (winW > winH) && (winH <= 520);
+  var isMobileLand = (winW > winH) && (winH <= 600 || winW <= 1024);
 
   var scale;
   if (isMobileLand) {
@@ -32,12 +32,54 @@ function adjustStageScale() {
   document.documentElement.style.setProperty('--stage-scale', scale);
 }
 
-window.addEventListener('resize', adjustStageScale);
+// Xử lý chuyển đổi hướng màn hình chính xác và triệt để
+function updateOrientationState() {
+  var winW = window.innerWidth || document.documentElement.clientWidth;
+  var winH = window.innerHeight || document.documentElement.clientHeight;
+  var isLandscape = winW > winH;
+
+  if (isLandscape) {
+    document.body.classList.add("is-landscape");
+    document.body.classList.remove("is-portrait");
+
+    // Khi người dùng xoay ngang máy, lập tức tắt sạch toàn bộ thông báo/modal dọc
+    // để trả lại trọn vẹn màn hình cây hoa nở cho người dùng
+    var pModal = document.getElementById("portrait-letter-modal");
+    var rModal = document.getElementById("rotate-to-portrait-modal");
+    if (pModal && pModal.classList.contains("open")) {
+      pModal.classList.remove("open");
+    }
+    if (rModal && rModal.classList.contains("open")) {
+      rModal.classList.remove("open");
+    }
+    pendingVideoIndex = null;
+    pendingGiftElement = null;
+  } else {
+    document.body.classList.add("is-portrait");
+    document.body.classList.remove("is-landscape");
+  }
+}
+
+window.addEventListener('resize', function () {
+  adjustStageScale();
+  updateOrientationState();
+});
 window.addEventListener('orientationchange', function () {
-  setTimeout(adjustStageScale, 50);
-  setTimeout(adjustStageScale, 250);
+  setTimeout(function () {
+    adjustStageScale();
+    updateOrientationState();
+  }, 50);
+  setTimeout(function () {
+    adjustStageScale();
+    updateOrientationState();
+  }, 200);
+  setTimeout(function () {
+    adjustStageScale();
+    updateOrientationState();
+  }, 400);
 });
 adjustStageScale();
+updateOrientationState();
 
 // Audio Controller
 var audio = document.getElementById("myAudio");
@@ -460,10 +502,8 @@ function closeGiftVideo() {
     audio.play().then(updateMusicBtnState).catch(function () {});
   }
 
-  // Nếu người dùng đang ở chế độ xoay dọc, mở thẳng giao diện xem thư & quà dọc
-  if (window.innerHeight > window.innerWidth && portraitModal) {
-    portraitModal.classList.add("open");
-  }
+  // Cập nhật trạng thái hướng màn hình ngay khi đóng video
+  updateOrientationState();
 }
 
 function handleGiftClick(videoIndex, element) {
